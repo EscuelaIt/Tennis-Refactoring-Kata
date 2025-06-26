@@ -1,4 +1,6 @@
-﻿namespace Tennis;
+﻿using System;
+
+namespace Tennis;
 
 internal struct Score
 {
@@ -21,5 +23,17 @@ internal struct Score
     public void WonPointPlayerTwo()
     {
         PlayerTwoPoints++;
+    }
+
+    internal static string NameOfPoints(int howManyPoints)
+    {
+        return howManyPoints switch
+        {
+            0 => "Love",
+            1 => "Fifteen",
+            2 => "Thirty",
+            3 => "Forty",
+            _ => throw new ArgumentOutOfRangeException(nameof(howManyPoints), howManyPoints, "Invalid number of points")
+        };
     }
 }

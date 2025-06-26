@@ -11,6 +11,8 @@ namespace Tennis
 
         public TennisGame1(string player1Name, string player2Name)
         {
+            Debug.Assert(player1Name != player2Name);
+            
             this.player1Name = player1Name;
             this.player2Name = player2Name;
         }
@@ -41,21 +43,8 @@ namespace Tennis
             {
                 if (i == 1) tempScore = current.PlayerOnePoints;
                 else { score += "-"; tempScore = current.PlayerTwoPoints; }
-                switch (tempScore)
-                {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
+
+                score += Score.NameOfPoints(tempScore);
             }
 
             return score;
