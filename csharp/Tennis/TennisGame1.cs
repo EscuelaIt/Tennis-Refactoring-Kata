@@ -30,15 +30,21 @@ namespace Tennis
 
         public string GetScore()
         {
-            string score = "";
-            var tempScore = 0;
-            if (m_score1 == m_score2)
-                score = Tie();
-            else if (m_score1 >= 4 || m_score2 >= 4)
-                score = AfterDeuce();
-            else
-                score = BeforeDeuce(score);
-            return score;
+            if (IsTie())
+                return Tie();
+            if (IsAfterDeuce())
+                return AfterDeuce();
+            return BeforeDeuce("");
+        }
+
+        bool IsAfterDeuce()
+        {
+            return m_score1 >= 4 || m_score2 >= 4;
+        }
+
+        bool IsTie()
+        {
+            return m_score1 == m_score2;
         }
 
         string BeforeDeuce(string score)
