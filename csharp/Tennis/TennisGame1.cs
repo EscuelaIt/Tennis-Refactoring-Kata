@@ -17,13 +17,9 @@ namespace Tennis
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-            {
                 current.WonPointPlayerOne();
-            }
             else
-            {
                 current.WonPointPlayerTwo();
-            }
         }
 
         public string GetScore()
@@ -42,7 +38,6 @@ namespace Tennis
 
         bool IsTie()
         {
-            Debug.Assert(current.Is(current.PlayerOnePoints, current.PlayerTwoPoints));
             return current.PlayerOnePoints == current.PlayerTwoPoints;
         }
 
@@ -96,7 +91,6 @@ namespace Tennis
                     score = "Fifteen-All";
                     break;
                 case 2:
-                    Debug.Assert(current.Is(current.PlayerOnePoints, current.PlayerTwoPoints));
                     score = "Thirty-All";
                     break;
                 default:

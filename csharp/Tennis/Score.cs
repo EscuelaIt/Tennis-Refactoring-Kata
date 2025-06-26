@@ -19,9 +19,4 @@ internal struct Score
     {
         PlayerTwoPoints++;
     }
-
-    public bool Is(int one, int two)
-    {
-        return PlayerOnePoints == one && PlayerTwoPoints == two;
-    }
 }
