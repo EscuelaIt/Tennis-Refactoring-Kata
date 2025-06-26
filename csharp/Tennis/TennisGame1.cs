@@ -24,7 +24,7 @@ namespace Tennis
 
         public string GetScore()
         {
-            if (IsTie())
+            if (current.IsTie)
                 return Tie();
             if (IsAfterDeuce())
                 return AfterDeuce();
@@ -34,11 +34,6 @@ namespace Tennis
         bool IsAfterDeuce()
         {
             return current.PlayerOnePoints >= 4 || current.PlayerTwoPoints >= 4;
-        }
-
-        bool IsTie()
-        {
-            return current.PlayerOnePoints == current.PlayerTwoPoints;
         }
 
         string BeforeDeuce(string score)

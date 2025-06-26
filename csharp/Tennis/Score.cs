@@ -9,7 +9,9 @@ internal struct Score
     {
         return new Score ();
     }
-    
+
+    public bool IsTie => PlayerOnePoints == PlayerTwoPoints;
+
     public void WonPointPlayerOne()
     {
         PlayerOnePoints++;
