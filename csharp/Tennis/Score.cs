@@ -13,6 +13,7 @@ internal struct Score
         return new Score ();
     }
 
+    public int PointsDifference => PlayerOnePoints - PlayerTwoPoints;
     public bool IsTie => PlayerOnePoints == PlayerTwoPoints;
     public bool IsAdvOrWin => PlayerOnePoints >= 4 || PlayerTwoPoints >= 4;
 
@@ -36,6 +37,17 @@ internal struct Score
 
     public string NameOfPoints()
     {
+        if (IsTie)
+            return NameOfTie();
+        if(IsAdvOrWin)
+            return PointsDifference switch
+            {
+                1 => "Advantage player1",
+                -1 => "Advantage player2",
+                >= 2 => "Win for player1",
+                _ => "Win for player2"
+            };
+        
         return NameOfPoints(PlayerOnePoints)
                + "-"
                + NameOfPoints(PlayerTwoPoints);
