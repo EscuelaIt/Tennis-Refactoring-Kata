@@ -17,9 +17,15 @@ namespace Tennis
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
+            {
+                current.WonPointPlayerOne();
                 m_score1 += 1;
+            }
             else
+            {
+                current.WonPointPlayerTwo();
                 m_score2 += 1;
+            }
         }
 
         public string GetScore()
