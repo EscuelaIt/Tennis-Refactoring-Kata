@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Tennis;
 
@@ -25,6 +26,29 @@ internal struct Score
         PlayerTwoPoints++;
     }
 
+    public string NameOfTie()
+    {
+        Debug.Assert(IsTie);
+        return PlayerOnePoints <= 2
+            ? $"{NameOfPoints(PlayerOnePoints)}-All"
+            : "Deuce";
+    }
+
+    public string NameOfPoints()
+    {
+        return NameOfPointsOfPlayerOne() + "-" + NameOfPointsOfPlayerTwo();
+    }
+
+    public string NameOfPointsOfPlayerOne()
+    {
+        return NameOfPoints(PlayerOnePoints);
+    }
+    
+    public string NameOfPointsOfPlayerTwo()
+    {
+        return NameOfPoints(PlayerTwoPoints);
+    }
+    
     internal static string NameOfPoints(int howManyPoints)
     {
         return howManyPoints switch

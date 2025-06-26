@@ -30,24 +30,10 @@ namespace Tennis
         public string GetScore()
         {
             if (current.IsTie)
-                return Tie();
+                return current.NameOfTie();
             if (current.IsAdvOrWin)
                 return AfterDeuce();
-            return BeforeDeuce("");
-        }
-
-        string BeforeDeuce(string score)
-        {
-            for (var i = 1; i < 3; i++)
-            {
-                int tempScore;
-                if (i == 1) tempScore = current.PlayerOnePoints;
-                else { score += "-"; tempScore = current.PlayerTwoPoints; }
-
-                score += Score.NameOfPoints(tempScore);
-            }
-
-            return score;
+            return current.NameOfPoints();
         }
 
         string AfterDeuce()
@@ -59,13 +45,6 @@ namespace Tennis
             else if (minusResult >= 2) score = "Win for player1";
             else score = "Win for player2";
             return score;
-        }
-
-        string Tie()
-        {
-            return current.PlayerOnePoints <= 2
-                ? $"{Score.NameOfPoints(current.PlayerOnePoints)}-All"
-                : "Deuce";
         }
     }
 }
