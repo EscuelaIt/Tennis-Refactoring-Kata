@@ -4,6 +4,7 @@ namespace Tennis
     {
         private int m_score1 = 0;
         private int m_score2 = 0;
+        Score current;
         private string player1Name;
         private string player2Name;
 
