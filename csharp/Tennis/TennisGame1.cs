@@ -81,25 +81,13 @@ namespace Tennis
 
         string Tie()
         {
-            string score;
-            switch (current.PlayerOnePoints)
+            return current.PlayerOnePoints switch
             {
-                case 0:
-                    score = "Love-All";
-                    break;
-                case 1:
-                    score = "Fifteen-All";
-                    break;
-                case 2:
-                    score = "Thirty-All";
-                    break;
-                default:
-                    score = "Deuce";
-                    break;
-
-            }
-
-            return score;
+                0 => "Love-All",
+                1 => "Fifteen-All",
+                2 => "Thirty-All",
+                _ => "Deuce"
+            };
         }
     }
 }
