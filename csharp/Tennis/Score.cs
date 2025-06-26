@@ -36,20 +36,12 @@ internal struct Score
 
     public string NameOfPoints()
     {
-        return NameOfPointsOfPlayerOne() + "-" + NameOfPointsOfPlayerTwo();
+        return NameOfPoints(PlayerOnePoints)
+               + "-"
+               + NameOfPoints(PlayerTwoPoints);
     }
 
-    public string NameOfPointsOfPlayerOne()
-    {
-        return NameOfPoints(PlayerOnePoints);
-    }
-    
-    public string NameOfPointsOfPlayerTwo()
-    {
-        return NameOfPoints(PlayerTwoPoints);
-    }
-    
-    internal static string NameOfPoints(int howManyPoints)
+    static string NameOfPoints(int howManyPoints)
     {
         return howManyPoints switch
         {
