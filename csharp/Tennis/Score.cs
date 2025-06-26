@@ -2,8 +2,8 @@
 
 internal struct Score
 {
-    int playerOnePoints;
-    int playerTwoPoints;
+    public int PlayerOnePoints { get; private set; }
+    public int PlayerTwoPoints { get; private set; }
 
     public static Score LoveAll()
     {
@@ -12,16 +12,16 @@ internal struct Score
     
     public void WonPointPlayerOne()
     {
-        playerOnePoints++;
+        PlayerOnePoints++;
     }
     
     public void WonPointPlayerTwo()
     {
-        playerTwoPoints++;
+        PlayerTwoPoints++;
     }
 
     public bool Is(int one, int two)
     {
-        return playerOnePoints == one && playerTwoPoints == two;
+        return PlayerOnePoints == one && PlayerTwoPoints == two;
     }
 }

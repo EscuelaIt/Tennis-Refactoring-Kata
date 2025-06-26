@@ -4,8 +4,6 @@ namespace Tennis
 {
     public class TennisGame1 : ITennisGame
     {
-        private int m_score1 = 0;
-        private int m_score2 = 0;
         Score current = Score.LoveAll();
         private string player1Name;
         private string player2Name;
@@ -21,12 +19,10 @@ namespace Tennis
             if (playerName == "player1")
             {
                 current.WonPointPlayerOne();
-                m_score1 += 1;
             }
             else
             {
                 current.WonPointPlayerTwo();
-                m_score2 += 1;
             }
         }
 
@@ -41,13 +37,13 @@ namespace Tennis
 
         bool IsAfterDeuce()
         {
-            return m_score1 >= 4 || m_score2 >= 4;
+            return current.PlayerOnePoints >= 4 || current.PlayerTwoPoints >= 4;
         }
 
         bool IsTie()
         {
-            Debug.Assert(current.Is(m_score1, m_score2));
-            return m_score1 == m_score2;
+            Debug.Assert(current.Is(current.PlayerOnePoints, current.PlayerTwoPoints));
+            return current.PlayerOnePoints == current.PlayerTwoPoints;
         }
 
         string BeforeDeuce(string score)
@@ -55,8 +51,8 @@ namespace Tennis
             int tempScore;
             for (var i = 1; i < 3; i++)
             {
-                if (i == 1) tempScore = m_score1;
-                else { score += "-"; tempScore = m_score2; }
+                if (i == 1) tempScore = current.PlayerOnePoints;
+                else { score += "-"; tempScore = current.PlayerTwoPoints; }
                 switch (tempScore)
                 {
                     case 0:
@@ -80,7 +76,7 @@ namespace Tennis
         string AfterDeuce()
         {
             string score;
-            var minusResult = m_score1 - m_score2;
+            var minusResult = current.PlayerOnePoints - current.PlayerTwoPoints;
             if (minusResult == 1) score = "Advantage player1";
             else if (minusResult == -1) score = "Advantage player2";
             else if (minusResult >= 2) score = "Win for player1";
@@ -91,7 +87,7 @@ namespace Tennis
         string Tie()
         {
             string score;
-            switch (m_score1)
+            switch (current.PlayerOnePoints)
             {
                 case 0:
                     score = "Love-All";
@@ -100,7 +96,7 @@ namespace Tennis
                     score = "Fifteen-All";
                     break;
                 case 2:
-                    Debug.Assert(current.Is(m_score1, m_score2));
+                    Debug.Assert(current.Is(current.PlayerOnePoints, current.PlayerTwoPoints));
                     score = "Thirty-All";
                     break;
                 default:
