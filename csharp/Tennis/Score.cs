@@ -11,6 +11,7 @@ internal struct Score
     }
 
     public bool IsTie => PlayerOnePoints == PlayerTwoPoints;
+    public bool IsAdvOrWin => PlayerOnePoints >= 4 || PlayerTwoPoints >= 4;
 
     public void WonPointPlayerOne()
     {

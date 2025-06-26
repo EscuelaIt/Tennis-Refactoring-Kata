@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 
 namespace Tennis
@@ -16,9 +17,11 @@ namespace Tennis
 
         public void WonPoint(string playerName)
         {
-            if (playerName == "player1")
+            Debug.Assert(playerName == player1Name || playerName == player2Name, "Invalid player name");
+            
+            if (playerName == player1Name)
                 current.WonPointPlayerOne();
-            else
+            else if (playerName == player2Name)
                 current.WonPointPlayerTwo();
         }
 
@@ -26,14 +29,9 @@ namespace Tennis
         {
             if (current.IsTie)
                 return Tie();
-            if (IsAfterDeuce())
+            if (current.IsAdvOrWin)
                 return AfterDeuce();
             return BeforeDeuce("");
-        }
-
-        bool IsAfterDeuce()
-        {
-            return current.PlayerOnePoints >= 4 || current.PlayerTwoPoints >= 4;
         }
 
         string BeforeDeuce(string score)
