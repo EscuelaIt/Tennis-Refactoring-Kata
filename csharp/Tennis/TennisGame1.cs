@@ -38,9 +38,9 @@ namespace Tennis
 
         string BeforeDeuce(string score)
         {
-            int tempScore;
             for (var i = 1; i < 3; i++)
             {
+                int tempScore;
                 if (i == 1) tempScore = current.PlayerOnePoints;
                 else { score += "-"; tempScore = current.PlayerTwoPoints; }
 
@@ -63,13 +63,9 @@ namespace Tennis
 
         string Tie()
         {
-            return current.PlayerOnePoints switch
-            {
-                0 => "Love-All",
-                1 => "Fifteen-All",
-                2 => "Thirty-All",
-                _ => "Deuce"
-            };
+            return current.PlayerOnePoints <= 2
+                ? $"{Score.NameOfPoints(current.PlayerOnePoints)}-All"
+                : "Deuce";
         }
     }
 }
